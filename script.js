@@ -4,7 +4,7 @@
 
 // 🎵 Background music (replace easily)
 const MUSIC_SRC =
-  "https://assets.mixkit.co/music/preview/mixkit-romantic-soft-piano-716.mp3";
+  "High School Musical - Start Of Something New (Karaoke Version).mp3";
 
 // 🏠 Home feed (newest on top by date)
 const HOME_POSTS = [
@@ -71,16 +71,20 @@ setInterval(createFloating, 350);
 /* =====================
    NAVIGATION
 ===================== */
-const tabs = document.querySelectorAll(".floating-nav button");
 const pages = document.querySelectorAll(".page");
+const navButtons = document.querySelectorAll(".floating-nav button");
 
-tabs.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    tabs.forEach((b) => b.classList.remove("active"));
-    pages.forEach((p) => p.classList.remove("active"));
+navButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = button.dataset.tab;
 
-    btn.classList.add("active");
-    document.getElementById(btn.dataset.tab).classList.add("active");
+    // Remove active from everything
+    pages.forEach((page) => page.classList.remove("active"));
+    navButtons.forEach((btn) => btn.classList.remove("active"));
+
+    // Activate selected
+    document.getElementById(target).classList.add("active");
+    button.classList.add("active");
   });
 });
 
@@ -93,11 +97,40 @@ const hoverSound = document.getElementById("hoverSound");
 const yesSound = document.getElementById("yesSound");
 
 function moveNoButton() {
-  const parent = noBtn.parentElement.getBoundingClientRect();
-  const btn = noBtn.getBoundingClientRect();
+  const parentRect = noBtn.parentElement.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
 
-  noBtn.style.left = Math.random() * (parent.width - btn.width) + "px";
-  noBtn.style.top = Math.random() * (parent.height - btn.height) + "px";
+  const maxX = parentRect.width - btnRect.width;
+  const maxY = parentRect.height - btnRect.height;
+
+  // Random position
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  // Random rotation (-30deg to 30deg)
+  const randomRotate = (Math.random() - 0.5) * 60;
+
+  // Random scale (0.8 to 1.2)
+  const randomScale = 0.8 + Math.random() * 0.4;
+
+  // Apply position
+  noBtn.style.left = `${randomX}px`;
+  noBtn.style.top = `${randomY}px`;
+
+  // Apply chaos transform
+  noBtn.style.transform = `
+    rotate(${randomRotate}deg)
+    scale(${randomScale})
+  `;
+
+  // Add quick bounce effect
+  noBtn.style.transition = "all 0.15s ease-out";
+
+  // 20% chance to jump near edge for extra chaos
+  if (Math.random() < 0.2) {
+    noBtn.style.left = Math.random() < 0.5 ? "0px" : `${maxX}px`;
+    noBtn.style.top = Math.random() < 0.5 ? "0px" : `${maxY}px`;
+  }
 }
 
 noBtn.addEventListener("mouseenter", () => {

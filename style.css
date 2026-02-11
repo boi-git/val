@@ -19,19 +19,35 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+#floating-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
 /* Floating background */
 #floating-layer span {
   position: absolute;
   bottom: -40px;
   animation: floatUp linear forwards;
-  pointer-events: none;
   opacity: 0.8;
+  will-change: transform, opacity;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(0) scale(1); opacity: 1; }
-  to { transform: translateY(-120vh) scale(1.8); opacity: 0; }
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) scale(1.8);
+    opacity: 0;
+  }
 }
+
 
 /* App */
 #app {
@@ -40,15 +56,19 @@ body {
 }
 
 .page {
-  display: none;
-  padding: 40px 20px 50px;
   height: 100%;
+  display: none;
+  min-height: 100vh;
 }
 
 .page.active {
   display: flex;
-  align-items: center;
+  align-items: self-start;
   justify-content: center;
+}
+
+.favorite{
+  align-items: center !important;
 }
 
 /* ================= LOVE CARD ================= */
@@ -199,6 +219,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding-top: 20vh;
+  padding-bottom: 120px;
 }
 
 .event {
