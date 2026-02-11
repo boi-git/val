@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Valentine 💘</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Background floating elements -->
+  <div id="floating-layer"></div>
+
+  <!-- Main content -->
+  <main id="app">
+
+    <!-- HOME -->
+    <section id="home" class="page">
+        <div class="page-inner">
+      <div class="feed"></div>
+        </div>
+    </section>
+
+    <!-- LOVE -->
+    <section id="love" class="page active">
+        <div class="page-inner center">
+      <div class="card love-card">
+        <div class="emoji">👩‍⚕️❤️⛹🏼‍♂️</div>
+        <h2>Aditi,<br>will you be my Valentine?</h2>
+
+        <div class="love-actions">
+          <button class="love-btn" id="yes">Yes 💖</button>
+          <button class="love-btn" id="no">No 🙈</button>
+        </div>
+
+        <div class="hint">You already know the answer, don’t you?</div>
+      </div>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section id="calendar" class="page">
+      <div class="page-inner">
+      <div class="calendar-list"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="floating-nav">
+    <button data-tab="home" class="active">
+      <span class="material-symbols-outlined">home</span>
+    </button>
+    <button data-tab="love">
+      <span class="material-symbols-outlined">favorite</span>
+    </button>
+    <button data-tab="calendar">
+      <span class="material-symbols-outlined">event</span>
+    </button>
+  </nav>
+
+  <!-- Audio -->
+  <audio id="bgMusic"></audio>
+  <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-voice-laugh-343.mp3"></audio>
+  <audio id="yesSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
